@@ -1,0 +1,32 @@
+assets:
+  motor_01:
+    name: "Motor-01"
+    type: "Industrial Motor"
+    registers:
+      40001:
+        name: "temperature"
+        unit: "Celsius"
+        normal_range: [20, 80]
+      40002:
+        name: "pressure"
+        unit: "bar"
+        normal_range: [1, 8]
+      40003:
+        name: "vibration"
+        unit: "mm/s"
+        normal_range: [0, 70]
+      40004:
+        name: "motor_state"
+        values:
+          0: "OFF"
+          1: "ON"
+      40005:
+        name: "fault_status"
+        values:
+          0: "NO_FAULT"
+          1: "FAULT"
+      40006:
+        name: "production_status"
+        values:
+          0: "STOPPED"
+          1: "RUNNING"

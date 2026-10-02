@@ -1,0 +1,20 @@
+modbus:
+  host: "127.0.0.1"
+  port: 1502
+  unit_id: 1
+  update_interval_seconds: 1.0
+  client_poll_interval_seconds: 1.0
+  connection_retries: 10
+  retry_delay_seconds: 2
+capture:
+  interface: ""
+  tshark_path: "tshark"
+  output_directory: "captures"
+  default_duration_seconds: 60
+parser:
+  output_directory: "results/parsed"
+  schema_version: "1.0"
+  recursive: false
+logging:
+  level: "INFO"
+  directory: "logs"

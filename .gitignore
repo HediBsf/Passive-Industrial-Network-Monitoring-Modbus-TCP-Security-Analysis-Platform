@@ -1,0 +1,27 @@
+# Local environment
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.pytype/
+.mypy_cache/
+.coverage
+htmlcov/
+.env
+.env.*
+!.env.example
+
+# Runtime output and captures
+captures/
+results/
+logs/
+output/
+tmp/
+
+# Editor and OS noise
+.claude/
+.DS_Store
+*.log
+*.pid
+*.tmp
+*.bak

@@ -1,0 +1,32 @@
+services:
+  modbus-server:
+    build: .
+    command: python -m src.simulator.server --host 0.0.0.0 --port 1502
+    environment:
+      MODBUS_HOST: 0.0.0.0
+      MODBUS_PORT: 1502
+      MODBUS_UPDATE_INTERVAL: ${MODBUS_UPDATE_INTERVAL:-1.0}
+    ports:
+      - "1502:1502"
+    networks: [sentinel]
+    healthcheck:
+      test: ["CMD-SHELL", "python -c \"import socket;s=socket.create_connection(('127.0.0.1',1502),2);s.close()\""]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+  modbus-client:
+    build: .
+    command: >
+      python -m src.simulator.client --host modbus-server --port 1502
+      --scenario ${SCENARIO:-normal} --duration ${DURATION:-60}
+      --interval ${CLIENT_INTERVAL:-1.0}
+    environment:
+      MODBUS_HOST: modbus-server
+      MODBUS_PORT: 1502
+    depends_on:
+      modbus-server:
+        condition: service_healthy
+    networks: [sentinel]
+networks:
+  sentinel:
+    driver: bridge
